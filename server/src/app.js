@@ -10,7 +10,7 @@ import { ENV } from "./config/env.js";
 const app = express();
 
 //middlewares
-if (ENV.NODE_ENV === "production") {
+if (ENV.NODE_ENV === "production") { //in prod
   app.set("trust proxy", 1);
 }
 app.use(morgan("dev"));
