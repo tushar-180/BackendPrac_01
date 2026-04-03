@@ -4,6 +4,7 @@ import { ENV } from "../config/env.js";
 export const generateAccessToken = (userId) => {
   return jwt.sign({ id: userId }, ENV.ACCESS_SECRET, {
     expiresIn: "15m",
+    // expiresIn: "10s",
   });
 };
 

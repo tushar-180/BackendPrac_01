@@ -131,13 +131,8 @@ export const logout = async (req, res) => {
         refreshToken: null,
       });
     }
-    // res.clearCookie("token");
     clearTokenCookie(res, "accessToken");
     clearTokenCookie(res, "refreshToken");
-
-    // await User.findByIdAndUpdate(req.userId, {
-    //   refreshToken: null,
-    // });
 
     res.status(200).json({
       success: true,
