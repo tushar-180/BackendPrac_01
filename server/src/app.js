@@ -6,6 +6,8 @@ import authRouter from "./routes/auth.routes.js";
 import userRouter from "./routes/user.routes.js";
 import {  globalLimiter } from "./middlewares/rateLimit.js";
 import { ENV } from "./config/env.js";
+import cors from "cors";
+
 
 const app = express();
 
@@ -13,6 +15,10 @@ const app = express();
 if (ENV.NODE_ENV === "production") { //in production
   app.set("trust proxy", 1);
 }
+app.use(cors({
+  origin:"http://localhost:5173",
+  credentials:true
+}));
 app.use(morgan("dev"));
 app.use(express.json());
 app.use(cookieParser());

@@ -1,4 +1,4 @@
-import { loginSchema, userSchema } from "../validations/user.validation.js";
+// import { loginSchema, userSchema } from "../validations/user.validation.js";
 import { formatZodErrors } from "../utils/formatErrors.js";
 import {
   createUser,
@@ -13,6 +13,7 @@ import {
   generateRefreshToken,
 } from "../utils/generateTokens.js";
 import { clearTokenCookie, setTokenCookie } from "../utils/setTokenCookie.js";
+import { loginSchema, userSchema } from "../../../shared/schemas/auth.schema.js";
 
 export const register = async (req, res) => {
   try {

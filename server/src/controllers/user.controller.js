@@ -1,3 +1,4 @@
+import { userSchema } from "../../../shared/schemas/auth.schema.js";
 import {
   findAllUsers,
   findUserById,
@@ -5,7 +6,7 @@ import {
   deleteUserById,
 } from "../services/user.service.js";
 
-import { userSchema } from "../validations/user.validation.js";
+// import { userSchema } from "../validations/user.validation.js";
 import { formatZodErrors } from "../utils/formatErrors.js";
 
 export const getAllUsers = async (req, res) => {
