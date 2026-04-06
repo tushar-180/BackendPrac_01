@@ -71,6 +71,7 @@ export const getUser = async (req, res) => {
 export const profile = async (req, res) => {
   try {
     const user = await findUserById(req.userId);
+    
 
     res.status(200).json({
       success: true,

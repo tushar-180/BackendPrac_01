@@ -9,6 +9,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import { useAuth } from "./context/AuthContext";
 import { FidgetSpinner } from "react-loader-spinner";
 import About from "./pages/About";
+import Dashboard from "./pages/Dashboard";
 
 const App = () => {
   const { user, loading } = useAuth();
@@ -52,6 +53,14 @@ const App = () => {
           element={
             <ProtectedRoute>
               <About />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/dashboard"
+          element={
+            <ProtectedRoute>
+              <Dashboard />
             </ProtectedRoute>
           }
         />

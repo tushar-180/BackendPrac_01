@@ -1,5 +1,20 @@
 import mongoose from "mongoose";
 
+const sessionSchema = new mongoose.Schema({
+  refreshToken:String,
+  device:String,
+  ip:String,
+  userAgent:String,
+  createdAt:{
+    type:Date,
+    default:Date.now()
+  },
+  lastActive:{
+    type:Date,
+    default:Date.now()
+  }
+})
+
 const userSchema = new mongoose.Schema(
   {
     username: {
@@ -15,7 +30,7 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    refreshToken: String,
+    sessions: [sessionSchema]
   },
   {
     timestamps: true,

@@ -6,6 +6,8 @@ const AuthContextProvider = ({ children }) => {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
+      if (user !== null) return; // already known
+
     const verifyUser = async () => {
       try {
         const res = await api.get("/users/profile");
