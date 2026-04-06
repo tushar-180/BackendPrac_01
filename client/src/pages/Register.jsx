@@ -19,8 +19,8 @@ const Register = () => {
     resolver: zodResolver(userSchema),
     mode: "onChange",
   });
-  const navigate = useNavigate()
-  const {setUser} = useAuth()
+  const navigate = useNavigate();
+  const { setUser } = useAuth();
   const onSubmit = async (data) => {
     try {
       const res = await api.post("/auth/register", data);
@@ -36,7 +36,7 @@ const Register = () => {
     <div className="flex h-screen p-5">
       {/* left side */}
 
-      <section className="w-1/2 rounded-2xl flex flex-col justify-center items-center">
+      <section className="w-full md:w-1/2  rounded-2xl flex flex-col justify-center items-center">
         <div className="w-96">
           <div className="mb-4 space-y-4">
             <h1 className="text-4xl ">Welcome</h1>
@@ -130,7 +130,7 @@ const Register = () => {
         </div>
       </section>
       {/* Right side */}
-      <section className="w-1/3 rounded-2xl overflow-hidden">
+      <section className="hidden md:block w-1/3 rounded-2xl overflow-hidden">
         <img
           src={fl2}
           alt="register"
