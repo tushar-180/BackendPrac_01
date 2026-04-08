@@ -4,6 +4,7 @@ import {
   login,
   logout,
   logoutAllDevices,
+  logoutAllDevicesExceptCurrent,
   logoutDevice,
   refreshAccessToken,
   register,
@@ -20,6 +21,7 @@ authRouter.get("/my-devices",authMiddleware,getMyDevices);
 authRouter.get("/logout", logout);
 authRouter.post("/logout-device",authMiddleware, logoutDevice);
 authRouter.get("/logout-all",logoutAllDevices);
+authRouter.get("/logout-all-except-current",authMiddleware,logoutAllDevicesExceptCurrent);
 
 authRouter.post("/refresh", refreshAccessToken);
 export default authRouter;

@@ -16,7 +16,7 @@ if (ENV.NODE_ENV === "production") { //in production
   app.set("trust proxy", 1);
 }
 app.use(cors({
-  origin:"http://localhost:5173",
+  origin:["http://localhost:5173","https://nhqwqwv2-5173.inc1.devtunnels.ms"],
   credentials:true
 }));
 app.use(morgan("dev"));

@@ -44,6 +44,7 @@ export const register = async (req, res) => {
     setTokenCookie(res, refreshToken, "refreshToken");
 
     user.password = undefined;
+   
 
     res.status(201).json({
       success: true,
@@ -100,6 +101,8 @@ export const login = async (req, res) => {
     setTokenCookie(res, refreshToken, "refreshToken");
 
     user.password = undefined;
+
+    
 
     res.status(200).json({
       success: true,
@@ -252,6 +255,51 @@ export const logoutAllDevices = async (req, res) => {
     });
   } catch (error) {
     console.error("Logout Error:", error);
+
+    res.status(500).json({
+      success: false,
+      message: "Internal server error",
+    });
+  }
+};
+
+export const logoutAllDevicesExceptCurrent = async (req, res) => {
+  try {
+    const refreshToken = req.cookies.refreshToken;
+
+    if (!refreshToken) {
+      return res.status(403).json({
+        success: false,
+        message: "Refresh token not found",
+      });
+    }
+    const { id } = jwt.verify(refreshToken, ENV.REFRESH_SECRET);
+    const user = await User.findById(id);
+    // console.log("user", user);
+    if (!user) {
+      return res.status(403).json({
+        success: false,
+        message: "User not found",
+      });
+    }
+    if (!req.sessionId) {
+      return res.status(400).json({
+        success: false,
+        message: "Session ID is required",
+      });
+    }
+    // console.log("req.sessionId", req.sessionId);
+    user.sessions = user.sessions.filter(
+      (session) => session._id.toString() === req.sessionId,
+    );
+    console.log("user after", user);
+    await user.save();
+    return res.status(200).json({
+      success: true,
+      message: "User logged out successfully",
+    });
+  } catch (error) {
+    console.error("Logoutexcept Error:", error);
 
     res.status(500).json({
       success: false,

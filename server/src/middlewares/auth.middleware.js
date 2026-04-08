@@ -27,7 +27,6 @@ export const authMiddleware = async (req, res, next) => {
       });
     }
 
-
     const session = user.sessions.find((s) => s.refreshToken === refreshToken);
 
     if (!session) {

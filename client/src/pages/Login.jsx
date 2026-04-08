@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import fl1 from "../assets/fl1.jpeg";
 import { FcGoogle } from "react-icons/fc";
 import { FaFacebook } from "react-icons/fa";
@@ -9,6 +9,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { api } from "../lib/axios";
 import { toast } from "react-toastify";
 import { useAuth } from "../context/AuthContext";
+import { FiEye, FiEyeOff } from "react-icons/fi";
 
 const Login = () => {
   const {
@@ -19,6 +20,7 @@ const Login = () => {
     resolver: zodResolver(loginSchema),
     mode: "onChange",
   });
+  const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
   const { setUser } = useAuth();
   const onSubmit = async (data) => {
@@ -61,14 +63,23 @@ const Login = () => {
               <br />
               <br />
               <label htmlFor="password">Password</label> <br />
-              <input
-                className="py-2 px-4 rounded-md border-gray-200 bg-blue-50 w-full"
-                type="password"
-                name="password"
-                id="password"
-                placeholder="At least 6 characters"
-                {...register("password")}
-              />{" "}
+              <div className="relative">
+                <input
+                  className="py-2 px-4 pr-10 rounded-md border-gray-200 bg-blue-50 w-full"
+                  type={showPassword ? "text" : "password"}
+                  id="password"
+                  placeholder="At least 6 characters"
+                  {...register("password")}
+                />
+
+                {/* Eye Icon */}
+                <span
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-3 top-2.5 cursor-pointer text-gray-600"
+                >
+                  {showPassword ? <FiEyeOff size={20} /> : <FiEye size={20} />}
+                </span>
+              </div>
               {errors.password && (
                 <p className="text-red-500 text-sm">
                   *{errors.password.message}

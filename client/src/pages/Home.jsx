@@ -22,7 +22,6 @@ const Home = () => {
 
   return (
     <div className="min-h-screen bg-gray-100">
-      
       {/* 🔝 Navbar */}
       <nav className="bg-white shadow-md px-6 py-4 flex justify-between items-center">
         {/* Left */}
@@ -35,7 +34,6 @@ const Home = () => {
 
         {/* Right */}
         <div className="flex items-center gap-6">
-          
           <button
             onClick={() => navigate("/dashboard")}
             className="flex items-center gap-2 text-gray-600 hover:text-blue-600 transition"
@@ -62,13 +60,13 @@ const Home = () => {
       {/* 🏠 Main Content */}
       <div className="flex items-center justify-center mt-16 px-4">
         <div className="bg-white shadow-lg rounded-2xl p-10 w-full max-w-lg text-center space-y-6">
-          
           <h1 className="text-3xl font-bold text-gray-800">
             Welcome {user?.username || "User"} 👋
           </h1>
 
           <p className="text-gray-500">
-            You are successfully logged in. Manage your account and devices easily.
+            You are successfully logged in. Manage your account and devices
+            easily.
           </p>
 
           {/* Actions */}
